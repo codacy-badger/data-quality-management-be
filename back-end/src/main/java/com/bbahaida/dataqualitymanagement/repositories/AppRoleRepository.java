@@ -1,0 +1,10 @@
+package com.bbahaida.dataqualitymanagement.repositories;
+
+import com.bbahaida.dataqualitymanagement.entities.AppRole;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.rest.core.annotation.RepositoryRestResource;
+
+@RepositoryRestResource(path = "/roles")
+public interface AppRoleRepository extends JpaRepository<AppRole, Long> {
+    AppRole findByRole(String role);
+}
