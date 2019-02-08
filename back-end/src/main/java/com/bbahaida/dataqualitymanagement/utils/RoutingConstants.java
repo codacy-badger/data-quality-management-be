@@ -5,4 +5,5 @@ public interface RoutingConstants {
     String DB_CONFIG_ROUTE = "/db/config";
     String DB_SETUP_ROUTE = "/setup-ds";
 
+    String DB_ALL_ROUTE = "/all";
 }

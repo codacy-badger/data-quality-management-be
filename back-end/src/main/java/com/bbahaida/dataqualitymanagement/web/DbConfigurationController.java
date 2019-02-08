@@ -33,7 +33,7 @@ public class DbConfigurationController {
 
     }
 
-    @GetMapping("/all")
+    @GetMapping(RoutingConstants.DB_ALL_ROUTE)
     public List<DBConfiguration> getAll(){
         return dataSourceService.getConfigurations();
     }

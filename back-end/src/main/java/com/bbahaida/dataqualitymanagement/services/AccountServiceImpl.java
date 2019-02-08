@@ -2,6 +2,7 @@ package com.bbahaida.dataqualitymanagement.services;
 
 import com.bbahaida.dataqualitymanagement.entities.AppRole;
 import com.bbahaida.dataqualitymanagement.entities.AppUser;
+import com.bbahaida.dataqualitymanagement.exceptions.UserAlreadyExistsException;
 import com.bbahaida.dataqualitymanagement.repositories.AppRoleRepository;
 import com.bbahaida.dataqualitymanagement.repositories.AppUserRepository;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -26,7 +27,7 @@ public class AccountServiceImpl implements AccountService {
     public AppUser saveUser(String username, String password, String confirmedPassword) {
 
         AppUser user = userRepository.findByUsername(username);
-        if (user != null ) throw new RuntimeException("Username already exists!!");
+        if (user != null) throw new UserAlreadyExistsException("Username already exists!!");
         if ( !password.equals(confirmedPassword) ) throw new RuntimeException("Please confirm your password");
 
         AppUser appUser = new AppUser();

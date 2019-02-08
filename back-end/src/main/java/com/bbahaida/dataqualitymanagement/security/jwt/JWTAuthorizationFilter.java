@@ -29,7 +29,7 @@ public class JWTAuthorizationFilter extends OncePerRequestFilter {
                 "Origin, " +
                 "Accept, " +
                 "X-Requested-With, " +
-                "Content-Type" +
+                "Content-Type, " +
                 "Access-Control-Request-Method, " +
                 "Access-Control-Request-Headers, " +
                 "authorization");
@@ -37,6 +37,7 @@ public class JWTAuthorizationFilter extends OncePerRequestFilter {
                 "Access-Control-Allow-Origin, " +
                 "Access-Control-Allow-Credentials, " +
                 "authorization");
+        response.addHeader("Access-Control-Allow-Methods", "HEAD,GET,POST,PUT,DELETE,OPTIONS,PATCH");
         if ( request.getMethod().equals("OPTIONS") ) {
             response.setStatus(HttpServletResponse.SC_OK);
         } else {
@@ -49,7 +50,7 @@ public class JWTAuthorizationFilter extends OncePerRequestFilter {
             JWTVerifier verifier = JWT.require(Algorithm.HMAC256(SecurityConstants.SECRET)).build();
             DecodedJWT decodedJWT = verifier.verify(jwtToken.replace(SecurityConstants.TOKEN_PREFIX, ""));
             String username = decodedJWT.getSubject();
-            List<String> roles = decodedJWT.getClaims().get("roles").asList(String.class);
+            List<String> roles = decodedJWT.getClaims().get(SecurityConstants.ROLES_CLAIM).asList(String.class);
             logger.info(username+ " was logged in with roles "+roles);
             Collection<GrantedAuthority> authorities = new ArrayList<>();
             roles.forEach(r -> authorities.add(new SimpleGrantedAuthority(r)));
