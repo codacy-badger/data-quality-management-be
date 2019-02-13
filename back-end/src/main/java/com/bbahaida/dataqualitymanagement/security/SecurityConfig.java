@@ -3,6 +3,7 @@ package com.bbahaida.dataqualitymanagement.security;
 import com.bbahaida.dataqualitymanagement.security.jwt.JWTAuthenticationFilter;
 import com.bbahaida.dataqualitymanagement.security.jwt.JWTAuthorizationFilter;
 import com.bbahaida.dataqualitymanagement.services.AccountService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -18,14 +19,11 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
+    @Autowired
     private UserDetailsService userDetailsService;
 
+    @Autowired
     private BCryptPasswordEncoder passwordEncoder;
-
-    public SecurityConfig(UserDetailsService userDetailsService, BCryptPasswordEncoder passwordEncoder) {
-        this.userDetailsService = userDetailsService;
-        this.passwordEncoder = passwordEncoder;
-    }
 
     @Bean
     public BCryptPasswordEncoder getPasswordEncoder(){
@@ -61,7 +59,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable();
-        http.cors();
 
         http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 

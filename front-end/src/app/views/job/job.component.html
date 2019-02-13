@@ -1,0 +1,47 @@
+<div class="animated fadeIn">
+  <div class="row">
+
+    <div class="col-sm-6 col-md-4">
+      <div class="card card-accent-primary">
+        <div class="card-header">
+          Choose DB Configurations
+        </div>
+        <div class="card-body">
+          <!--<app-db-configuration-list *ngIf="isConfigurationsExist()"></app-db-configuration-list>-->
+        </div>
+      </div>
+    </div><!--/.col-->
+    <div class="col-sm-6 col-md-4">
+      <div class="card card-accent-success">
+        <div class="card-header">
+          Choose a table
+        </div>
+        <div class="card-body">
+          <!--<app-db-configuration-list *ngIf="isConfigurationsExist()"></app-db-configuration-list>-->
+        </div>
+      </div>
+    </div><!--/.col-->
+    <div class="col-sm-6 col-md-4">
+      <div class="card card-accent-danger">
+        <div class="card-header">
+          Choose a quality checking approach
+        </div>
+        <div class="card-body">
+          <div class="row" *ngFor="let a of approaches">
+            <label class="col-9">{{a.name}}</label>
+            <label class="switch switch-label switch-pill switch-success float-right ">
+              <input type="checkbox" class="switch-input" [checked]="a.activated" (click)="changeState(a.name)">
+              <span class="switch-slider " data-checked="On" data-unchecked="Off"></span>
+            </label>
+          </div>
+
+        </div>
+        <div class="card-footer">
+          <button [disabled]="loading" type="button" class="btn btn-block btn-success" (click)="onSchuduleIt()">Schedule it <img *ngIf="loading" class="pl-3" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" /></button>
+
+        </div>
+      </div>
+    </div><!--/.col-->
+
+  </div>
+</div>
