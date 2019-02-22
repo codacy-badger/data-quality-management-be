@@ -1,2 +1,2 @@
 # data_quality_management_pfe
-[![Build Status](https://travis-ci.org/bbahaida/data-quality-management-be.png?branch=master)](https://travis-ci.org/bbahaida/data-quality-management-be)
+[![Build Status](https://travis-ci.org/bbahaida/data-quality-management-be.png?branch=develop)](https://travis-ci.org/bbahaida/data-quality-management-be)
