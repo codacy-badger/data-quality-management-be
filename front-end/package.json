@@ -1,29 +1,26 @@
 {
-  "name": "@coreui/coreui-free-angular-admin-template",
-  "version": "2.2.4",
-  "description": "CoreUI Free Angular 2+ Admin Template",
+  "name": "@vneuron/data-quality-management-platform",
+  "version": "1.0.0",
+  "description": "Data Quality Management Platform",
   "author": {
-    "name": "Łukasz Holeczek",
-    "url": "http://holeczek.pl",
-    "github": "https://github.com/mrholek",
-    "twitter": "https://twitter.com/lukaszholeczek"
+    "name": "Brahim Bahaida",
+    "url": "https://www.linkedin.com/in/bbahaida/",
+    "github": "https://github.com/bbahaida",
+    "twitter": "https://twitter.com/bbahaida"
   },
-  "contributors": [
-    {
-      "name": "Andrzej Kopański",
-      "url": "https://github.com/xidedix"
-    }
-  ],
-  "homepage": "https://coreui.io/angular",
-  "copyright": "Copyright 2018 creativeLabs Łukasz Holeczek",
-  "license": "MIT",
+  "homepage": "https://vneuron.com",
+  "copyright": "Copyright 2019 Brahim Bahaida",
+  "license": "Attribution-NonCommercial-NoDerivatives 4.0 International",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build --prod --aot --buildOptimizer --commonChunk --vendorChunk --optimization --progress",
+    "postinstall": "ng build --aot -prod",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "build:doc": "./node_modules/.bin/compodoc --name \"Data Quality Management Platform\" -p src/tsconfig.app.json --theme \"Material design\" -d dist/apps/documentation/compodoc",
+    "serve:doc": "./node_modules/.bin/compodoc --name \"Data Quality Management Platform\" -p src/tsconfig.app.json --theme \"Material design\" -d dist/apps/documentation/compodoc -s -r 5555"
   },
   "private": true,
   "dependencies": {
@@ -63,6 +60,7 @@
     "@angular/cli": "^7.2.2",
     "@angular/compiler-cli": "^7.2.1",
     "@angular/language-service": "^7.2.1",
+    "@compodoc/compodoc": "^1.1.8",
     "@types/jasmine": "^3.3.7",
     "@types/jasminewd2": "^2.0.6",
     "@types/node": "^10.12.18",

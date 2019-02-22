@@ -15,7 +15,6 @@ import org.springframework.batch.item.database.JdbcPagingItemReader;
 import org.springframework.batch.item.database.Order;
 import org.springframework.batch.item.database.support.SqlPagingQueryProviderFactoryBean;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -26,7 +25,6 @@ import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
-import java.util.function.Function;
 
 @Configuration
 public class JobCreatorComponent {
@@ -50,18 +48,20 @@ public class JobCreatorComponent {
     }
 
 
-    public Step etlTable(DataSource dataSource, final String tableName, final String columnName){
+    public Step etlTable(DataSource dataSource, final String tableName) {
         return stepBuilderFactory
                 .get("etlTable")
                 .<Map<String, Object>, AppDBItem>chunk(100)
-                .reader(pagingItemReader(dataSource, tableName, columnName))
+                .reader(pagingItemReader(dataSource, tableName))
                 .processor(qualityCheckerProcessor())
                 .writer(dbWriter())
                 .build();
     }
 
-    private JdbcPagingItemReader<Map<String, Object>> pagingItemReader(DataSource dataSource, String tableName, String columnName){
+    private JdbcPagingItemReader<Map<String, Object>> pagingItemReader(DataSource dataSource, String tableName) {
         try {
+            String columnName = dataSource.getConnection().getMetaData().getColumns(null, null, tableName, null).getString(1);
+
             JdbcPagingItemReader<Map<String, Object>> itemReader = new JdbcPagingItemReader<>();
             itemReader.setDataSource(dataSource);
             itemReader.setQueryProvider(queryProvider(dataSource, tableName, columnName).getObject());

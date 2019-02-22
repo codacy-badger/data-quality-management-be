@@ -14,6 +14,8 @@ export class LoginComponent implements OnInit {
   loading = false;
   submitted = false;
   returnUrl: string;
+  usernameMinLength = 4;
+  passwordMinLength = 4;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -30,21 +32,21 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     this.loginForm = this.formBuilder.group({
-      username: ['', Validators.required],
-      password: ['', [Validators.required, Validators.minLength(4)]],
+      username: ['', [Validators.required, Validators.minLength(this.usernameMinLength)]],
+      password: ['', [Validators.required, Validators.minLength(this.passwordMinLength)]],
     });
 
-    // get return url from route parameters or default to '/'
+    // getAll return url from route parameters or default to '/'
     this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
   }
 
-  // convenience getter for easy access to form fields
+  // convenience getter for easy access to login form fields
   get f() { return this.loginForm.controls; }
 
   onSubmit() {
     this.submitted = true;
 
-    // stop here if form is invalid
+    // stop here if login form is invalid
     if (this.loginForm.invalid) {
       console.log(this.loginForm.status);
       console.log(this.f.username.value + ' ' + this.f.password.value);
@@ -64,8 +66,9 @@ export class LoginComponent implements OnInit {
           }
         },
         error => {
-          this.alertService.error(error);
+          this.alertService.error('connection error');
           this.loading = false;
+          throw error;
         }
       );
   }

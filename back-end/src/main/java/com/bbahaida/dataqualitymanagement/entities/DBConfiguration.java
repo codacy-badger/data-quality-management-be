@@ -5,8 +5,6 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
-import org.springframework.data.annotation.CreatedBy;
-import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -25,7 +23,11 @@ public class DBConfiguration implements Serializable {
     @Column
     private int type;
     @Column
-    private String url;
+    private String host;
+    @Column
+    private int port;
+    @Column
+    private String databaseName;
     @Column
     private String username;
     @Column

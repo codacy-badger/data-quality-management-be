@@ -5,8 +5,10 @@
         <div class="col-md-8 mx-auto">
           <div class="card-group">
             <div class="card p-4">
+
               <div class="card-body">
                 <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+                  <alert></alert>
                   <h1>Login</h1>
                   <p class="text-muted">Sign In to your account</p>
                   <div class="input-group mb-3">
@@ -16,6 +18,7 @@
                     <input type="text" formControlName="username" class="form-control" placeholder="Username" autocomplete="username"  [ngClass]="{ 'is-invalid': submitted && f.username.errors }" />
                     <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
                       <div *ngIf="f.username.errors.required">Username is required</div>
+                      <div *ngIf="f.username.errors.minLength">Username can not be less than {{usernameMinLength}}}</div>
                     </div>
                   </div>
                   <div class="input-group mb-4">

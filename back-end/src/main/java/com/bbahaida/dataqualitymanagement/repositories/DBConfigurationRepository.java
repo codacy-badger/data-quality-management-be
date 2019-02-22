@@ -4,5 +4,5 @@ import com.bbahaida.dataqualitymanagement.entities.DBConfiguration;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface DBConfigurationRepository extends JpaRepository<DBConfiguration, Long> {
-    DBConfiguration findDBConfigurationByUrlAndTypeAndUsername(String url, int type, String username);
+    DBConfiguration findDBConfigurationByDatabaseNameAndUsernameAndPasswordAndHostAndPortAndType(final String dbName, final String username, final String password, final String host, final int port, final int type);
 }

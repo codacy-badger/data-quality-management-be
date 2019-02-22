@@ -41,7 +41,9 @@ import { ChartsModule } from 'ng2-charts/ng2-charts';
 
 // Import application
 import {ErrorInterceptor, JwtInterceptor} from './_helpers';
-import { ModalComponent } from './_components/modal/modal.component';
+import {ModalModule} from 'ngx-bootstrap';
+import { AddConfigurationModalComponent } from './views/job/add-configuration-modal/add-configuration-modal.component';
+import {AlertComponent} from './_components';
 
 
 
@@ -61,13 +63,15 @@ import { ModalComponent } from './_components/modal/modal.component';
     PerfectScrollbarModule,
     BsDropdownModule.forRoot(),
     TabsModule.forRoot(),
-    ChartsModule
+    ChartsModule,
+    ModalModule.forRoot()
   ],
   declarations: [
     AppComponent,
     ...APP_CONTAINERS,
+    AlertComponent,
     LoginComponent,
-    ModalComponent,
+    AddConfigurationModalComponent,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
@@ -77,6 +81,6 @@ import { ModalComponent } from './_components/modal/modal.component';
     useClass: PathLocationStrategy
   }],
   bootstrap: [ AppComponent ],
-  entryComponents: [ModalComponent]
+  entryComponents: [AddConfigurationModalComponent]
 })
 export class AppModule { }

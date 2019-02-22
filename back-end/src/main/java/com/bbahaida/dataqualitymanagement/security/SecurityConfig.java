@@ -62,7 +62,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
         http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 
-        http.authorizeRequests().antMatchers("/login/**").permitAll();
+        http.authorizeRequests().antMatchers(AUTH_LIST).permitAll().antMatchers("/**/*").denyAll();
         http.authorizeRequests().antMatchers("/users/**","/roles/**").hasAuthority("SUPER_USER");
         http.authorizeRequests().antMatchers("/db/**","/jobs/**").hasAuthority("MANAGER");
         http.authorizeRequests().antMatchers("/dashboard/**").hasAuthority("SIMPLE_USER");
@@ -72,4 +72,17 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.addFilterBefore(new JWTAuthorizationFilter(), UsernamePasswordAuthenticationFilter.class);
 
     }
+
+
+    private static final String[] AUTH_LIST = {
+            "/login/**",
+            "/docs/**",
+            "/v2/api-docs",
+            "/configuration/ui",
+            "/swagger-resources/**",
+            "/configuration/security",
+            "/swagger-ui.html",
+            "/webjars/**",
+            "favicon.ico"
+    };
 }
