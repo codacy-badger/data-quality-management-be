@@ -9,14 +9,27 @@ public interface DataSourceConstants {
 
 
     String ENTITIES_PACKAGE = "com.bbahaida.dataqualitymanagement.entities";
-    String JOB_URL = "${job.datasource.url:jdbc:mysql://localhost/data-quality-management-db?serverTimezone=UTC}";
+
+
+    /*String JOB_URL = "${job.datasource.url:jdbc:mysql://localhost/data-quality-management-db?serverTimezone=UTC}";
     String JOB_DRIVER = "${job.datasource.driver-class-name:com.mysql.jdbc.Driver}";
     String JOB_USER = "${job.datasource.username:root}";
     String JOB_PASSWORD = "${job.datasource.password:}";
+
     String CLIENT_URL = "${client.datasource.url:jdbc:mysql://localhost/client-db?serverTimezone=UTC}";
     String CLIENT_DRIVER = "${client.datasource.driver-class-name:com.mysql.jdbc.Driver}";
     String CLIENT_USER = "${client.datasource.username:root}";
     String CLIENT_PASSWORD = "${client.datasource.password:}";
+*/
+    String JOB_URL = "${spring.datasource.url}";
+    String JOB_DRIVER = "${spring.datasource.driver-class-name}";
+    String JOB_USER = "${spring.datasource.username}";
+    String JOB_PASSWORD = "${spring.datasource.password}";
+
+    String CLIENT_URL = "$${spring.datasource.url}";
+    String CLIENT_DRIVER = "${spring.datasource.driver-class-name}";
+    String CLIENT_USER = "${spring.datasource.username}";
+    String CLIENT_PASSWORD = "${spring.datasource.password}";
 
 
     String CLIENT_DS_QUALIFIER = "client-ds";
