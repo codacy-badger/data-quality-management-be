@@ -1,20 +1,14 @@
 package com.bbahaida.dataqualitymanagement.datasources;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-
-@Data
-@AllArgsConstructor
 public class MySqlDataSource extends AppDataSource {
 
-    private String databaseName;
-    private String host;
-    private int port;
-
+    MySqlDataSource(String databaseName, String host, int port) {
+        super(databaseName, host, port);
+    }
 
     @Override
     public String getUrl() {
-        return "jdbc:mysql://" + host + ":" + port + "/" + databaseName +"?serverTimezone=UTC";
+        return "jdbc:mysql://" + this.getUri() + "?serverTimezone=UTC";
     }
 
     @Override
