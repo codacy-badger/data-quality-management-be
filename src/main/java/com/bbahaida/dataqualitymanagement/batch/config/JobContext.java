@@ -1,4 +1,4 @@
-package com.bbahaida.dataqualitymanagement.batch.config.job;
+package com.bbahaida.dataqualitymanagement.batch.config;
 
 import com.bbahaida.dataqualitymanagement.utils.DataSourceConstants;
 import org.springframework.batch.core.configuration.JobRegistry;
@@ -72,6 +72,6 @@ public class JobContext {
         JobRepositoryFactoryBean jobRepo = new JobRepositoryFactoryBean();
         jobRepo.setDataSource(dataSource);
         jobRepo.setTransactionManager(transactionManager);
-        return jobRepo.getJobRepository();
+        return jobRepo.getObject();
     }
 }

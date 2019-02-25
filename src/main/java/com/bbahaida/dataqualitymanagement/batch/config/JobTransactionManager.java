@@ -1,4 +1,4 @@
-package com.bbahaida.dataqualitymanagement.batch.config.job;
+package com.bbahaida.dataqualitymanagement.batch.config;
 
 import com.bbahaida.dataqualitymanagement.utils.DataSourceConstants;
 import org.springframework.beans.factory.annotation.Autowired;
